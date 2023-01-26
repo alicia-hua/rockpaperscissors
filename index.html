@@ -12,7 +12,27 @@
     let random = Math.floor(Math.random() *choice.length)
     return choice[random]
    }
-   console.log(getComputerChoice())
+
+   function playRound(player, computerSelection){
+        if (computerSelection===player) {
+            return "that's a tie!"
+        }
+        else if ((player == "rock" && computerSelection == "scissors") || 
+            (player == "paper" && computerSelection =="rock") || 
+            (player == "scissors" && computerSelection =="paper")){
+                return "you've won!"}
+        else if ((computerSelection == "rock" && player == "paper") || 
+            (computerSelection == "paper" && player =="rock") || 
+            (computerSelection == "scissors" && player =="paper")){
+                return "you've lost!"
+                }
+            }
+    let computerSelection = getComputerChoice();
+    let playerSelection= prompt("Please choose between rock, paper or scissors");
+    console.log (playerSelection)
+    let player = playerSelection.toLowerCase();
+    console.log (computerSelection)
+    console.log (playRound(player, computerSelection))
   </script>
 </body>
 </html>
