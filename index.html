@@ -13,26 +13,49 @@
     return choice[random]
    }
 
-   function playRound(player, computerSelection){
+function game(playRound){
+let playerCount=0;
+let compCount=0;
+    for (let i=0; i<5; i++){
+        let result="";
+        
+        function playRound(player, computerSelection){
+
         if (computerSelection===player) {
-            return "that's a tie!"
+            console.log( "that's a tie!")
         }
         else if ((player == "rock" && computerSelection == "scissors") || 
             (player == "paper" && computerSelection =="rock") || 
             (player == "scissors" && computerSelection =="paper")){
-                return "you've won!"}
-        else if ((computerSelection == "rock" && player == "paper") || 
+                playerCount++
+                console.log( `you've won! ${player} beats ${computerSelection}`)}
+        else if ((computerSelection == "rock" && player == "scissors") || 
             (computerSelection == "paper" && player =="rock") || 
             (computerSelection == "scissors" && player =="paper")){
-                return "you've lost!"
+                compCount++
+                console.log(`you've lost! ${computerSelection} beats ${player}`)
                 }
             }
+
+    
     let computerSelection = getComputerChoice();
     let playerSelection= prompt("Please choose between rock, paper or scissors");
-    console.log (playerSelection)
     let player = playerSelection.toLowerCase();
+    console.log (playerSelection)
     console.log (computerSelection)
-    console.log (playRound(player, computerSelection))
+    playRound(player,computerSelection);
+    console.log (result)
+    }
+    if (playerCount>compCount){
+      console.log ("you've won the game after 5 rounds!")
+   }
+  else if (compCount>playerCount){
+     console.log ("you've lost the game after 5 rounds!")}
+   }
+   
+    game()
+
+    
   </script>
 </body>
 </html>
