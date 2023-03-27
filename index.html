@@ -5,57 +5,92 @@
   <title>Page Title</title>
 </head>
 <body>
+  <button class="rock">rock</button>
+    <button class="paper">paper</button>
+    <button class="scissors">scissors</button>
+    <div id="container"></div>
   <script>
-    // Your JavaScript goes here!
-   function getComputerChoice() {
+
+let playerCount=0;
+let compCount=0;
+let computerSelection = getComputerChoice();
+let result = "";
+
+const container = document.querySelector('#container');
+const par= document.createElement('p');
+const res= document.createElement('p');
+
+function getComputerChoice() {
     let choice =["rock", "paper", "scissors"]
     let random = Math.floor(Math.random() *choice.length)
     return choice[random]
    }
 
-function game(playRound){
-let playerCount=0;
-let compCount=0;
-    for (let i=0; i<5; i++){
-        let result="";
-        
-        function playRound(player, computerSelection){
+function playRound(player, computerSelection){
+  computerSelection=getComputerChoice()
 
-        if (computerSelection===player) {
-            console.log( "that's a tie!")
-        }
-        else if ((player == "rock" && computerSelection == "scissors") || 
-            (player == "paper" && computerSelection =="rock") || 
-            (player == "scissors" && computerSelection =="paper")){
-                playerCount++
-                console.log( `you've won! ${player} beats ${computerSelection}`)}
-        else if ((computerSelection == "rock" && player == "scissors") || 
-            (computerSelection == "paper" && player =="rock") || 
-            (computerSelection == "scissors" && player =="paper")){
-                compCount++
-                console.log(`you've lost! ${computerSelection} beats ${player}`)
-                }
-            }
-
-    
-    let computerSelection = getComputerChoice();
-    let playerSelection= prompt("Please choose between rock, paper or scissors");
-    let player = playerSelection.toLowerCase();
-    console.log (playerSelection)
-    console.log (computerSelection)
-    playRound(player,computerSelection);
-    console.log (result)
+if (computerSelection===player) {
+        par.textContent="that's a tie!"
+}
+else if ((player == "rock" && computerSelection == "scissors") || 
+    (player == "paper" && computerSelection =="rock") || 
+    (player == "scissors" && computerSelection =="paper")){
+        playerCount++  
+        par.textContent=`you've won! ${player} beats ${computerSelection}`
     }
-    if (playerCount>compCount){
-      console.log ("you've won the game after 5 rounds!")
-   }
-  else if (compCount>playerCount){
-     console.log ("you've lost the game after 5 rounds!")}
-   }
-   
-    game()
+else if ((computerSelection == "rock" && player == "scissors") || 
+    (computerSelection == "paper" && player =="rock") || 
+    (computerSelection == "scissors" && player =="paper")){
+        compCount++
+        par.textContent=`you've lost! ${computerSelection} beats ${player}`
+     }
 
+res.textContent=`result: you ${playerCount} - ${compCount} computer`
+
+if (playerCount == 5){
+  res.textContent=`you've won the game!`
+  playerCount=0;
+  compCount=0;
+}
+else if (compCount==5){
+  res.textContent=`you've lost the game!`
+  playerCount=0;
+  compCount=0;
+}
+container.appendChild(par)
+container.appendChild(res)
+    }
+
+
+
+const rock=document.querySelector('button.rock')
+const paper=document.querySelector('button.paper')
+const scissors=document.querySelector('button.scissors')
+
+rock.addEventListener('click', ()=>playRound('rock', computerSelection))
+paper.addEventListener('click', ()=>playRound('paper',computerSelection))
+scissors.addEventListener('click', ()=>playRound('scissors',computerSelection))
+
+// function game(){
+//     for (let i=0; i<5; i++){
+//         let computerSelection = getComputerChoice();
+//         let playerSelection= prompt("Please choose between rock, paper or scissors");
+//         let player = playerSelection.toLowerCase();
+//         console.log (playerSelection)
+//         console.log (computerSelection)
+//     playRound(player,computerSelection);
     
-  </script>
+//     }
+
+//     if (playerCount>compCount){
+//       console.log ("you've won the game after 5 rounds!")
+//     }
+//     else if (compCount>playerCount){
+//      console.log ("you've lost the game after 5 rounds!")}
+//    }
+   
+//     game()
+
+</script>
 </body>
 </html>
